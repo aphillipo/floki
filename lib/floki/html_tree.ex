@@ -63,6 +63,9 @@ defmodule Floki.HTMLTree do
 
     parse_tree(%{tree | tree: newer}, children, updated_parent, [s_item|stack], ids_seeder)
   end
+  defp parse_tree(tree, [_other | children], parent_node, stack, ids_seeder) do
+    parse_tree(tree, children, parent_node, stack, ids_seeder)
+  end
   defp parse_tree(tree, [], _, [stack_h|stack], ids_seeder) do
     parse_tree(tree, stack_h.children, stack_h.parent_node, stack, ids_seeder)
   end

@@ -30,8 +30,10 @@ defmodule Floki.HTMLTreeTest do
     link_attrs = [{"href", "/home"}]
     html_tuple =
       {"html", [],
-       [{"a", link_attrs,
-         [{"b", [], ["click me"]}]}, {"span", [], []}]}
+       [
+         {:comment, "start of the stack"},
+         {"a", link_attrs,
+          [{"b", [], ["click me"]}]}, {"span", [], []}]}
 
     assert HTMLTree.parse(html_tuple, FakeIdsSeeder) == %HTMLTree{
      root_id: "abcd",
